@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+</head>
+<body>
+<h1>{{ blog.blog_name }}</h1>
+<span>{{blog.blog_date}}</span>
+<p>{{blog.blog_text}}</p>
+<ul>
+    {% for tag in blog.tag_set.all %}
+         <li>{{ tag.tag_name }}</li>
+    {% endfor %}
+</ul>
+</body>
+</html>

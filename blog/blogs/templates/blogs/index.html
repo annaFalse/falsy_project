@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+</head>
+<body>
+{% if latest_blog %}
+    <ul>
+    {% for blog in latest_blog %}
+      <li><a href="{% url 'blogs:detail' blog.id %}">{{ blog.blog_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+</body>
+</html>
