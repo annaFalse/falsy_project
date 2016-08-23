@@ -1,22 +1,17 @@
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-from django.views import generic
 
-from .models import Tags, Blogs
+from .models import Blogs
 
 
 
-class indexView(generic.ListView):
-    template_name = 'blogs/index.html'
-    context_object_name = 'latest_blog'
-    def get_queryset(self):
-        return Blogs.objects.order_by('-pub_date')[:5]
+def index(request):
+    latest_blog = Blogs.objects.order_by('-blog_date')[:5]
+    context = {'latest_blog': latest_blog}
+    return render(request, 'blogs/index.html', context)
 
-
-class DetailView(generic.DetailView):
-    model = Blogs
-    template_name = 'blogs/detail.html'
+def detail(request, blog_id):
+    blog = get_object_or_404(Blogs, pk=blog_id)
+    return render(request, 'blogs/detail.html', {'blog': blog})
 
 
 def tag(blog_id):
