@@ -14,7 +14,7 @@ def detail(request, blog_id):
     return render(request, 'blogs/detail.html', {'blog': blog})
 
 
-def tag(blog_id):
+def tags(blog_id):
     tags = Blogs.objects.get(id=blog_id)
-    list_tags = [t.tag for t in tags.tags.all()]
+    list_tags = [t.tag for t in tags.all()]
     return list_tags
